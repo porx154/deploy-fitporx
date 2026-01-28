@@ -1,15 +1,21 @@
 {
   "builds": [
     {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "staticfiles" }
+    },
+    {
       "src": "fitporx/asgi.py",
       "use": "@vercel/python",
-      "config": {
-        "runtime": "3.12",
-        "maxLambdaSize": "15mb"
-      }
+      "config": { "runtime": "python3.12" }
     }
   ],
   "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "fitporx/asgi.py"
