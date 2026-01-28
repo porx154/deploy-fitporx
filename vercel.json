@@ -1,23 +1,22 @@
 {
-    "builds":[
-        {
-            "src": "fitporx/asgi.py",
-            "use": "@vercel/python",
-            "config": {
-                "maxLambdaSize": "15mb",
-                "runtime": "3.12",
-                "buildCommand": "python manage.py collectstatic --noinput"
-            }
-        }
-    ],
-    "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/public/static/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "fitporx/asgi.py"
-        }
-    ]
+  "builds": [
+    {
+      "src": "fitporx/asgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "3.12",
+        "maxLambdaSize": "15mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/public/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "fitporx/asgi.py"
+    }
+  ]
 }
