@@ -1,0 +1,1 @@
+from .fitprofile import FitProfile

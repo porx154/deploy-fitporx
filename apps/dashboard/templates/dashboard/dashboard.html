@@ -1,0 +1,85 @@
+{% extends 'basetablero.html' %}
+
+{% block title_tablero %}
+    Tablero Pesos
+{% endblock title_tablero %}
+
+{% block username_tablero %}
+    {{request.user}}
+{% endblock username_tablero %}
+    
+{% block subtitle_tablero %}
+    Mis Pesos
+{% endblock subtitle_tablero %}
+    
+
+{% block content_tablero %}
+
+   
+    <main class="container">
+        <!-- Area Chart -->
+        <div class="col-md-10 mt-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Tablero del Dia {{fecha_actual|date:"d/m/Y"}}</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dropdown Header:</div>
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Lunes</th>
+                            <th scope="col">Martes</th>
+                            <th scope="col">Miercoles</th>
+                            <th scope="col">Jueves</th>
+                            <th scope="col">Viernes</th>
+                            <th scope="col">Sabado</th>
+                            <th scope="col">Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            
+                            {% for data_tablero in pesos %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{ data_tablero.pesos_dia.Monday }}</td>
+                                    <td>{{ data_tablero.pesos_dia.Tuesday }}</td>
+                                    <td>{{ data_tablero.pesos_dia.Wednesday }}</td>
+                                    <td>{{ data_tablero.pesos_dia.Thursday }}</td>
+                                    <td>{{ data_tablero.pesos_dia.Friday }}</td>
+                                    <td>{{ data_tablero.pesos_dia.Saturday }}</td>
+                                    <td>{{ data_tablero.pesos_dia.Sunday }}</td>                               
+                                </tr>
+                            {%empty%}
+                            <tr>
+                                <td collspan="7">Aun no tiene registros esta semana</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>    
+ 
+
+{% endblock content_tablero %}
+        

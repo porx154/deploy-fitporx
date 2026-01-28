@@ -1,0 +1,130 @@
+{% extends 'basetablero.html' %}
+
+{% block title_tablero %}
+    Mis Objetivos
+{% endblock title_tablero %}
+
+{% block username_tablero %}
+    {{request.user}}
+{% endblock username_tablero %}
+    
+{% block subtitle_tablero %}
+    Mis Objetivos
+{% endblock subtitle_tablero %}
+
+{% block content_tablero %}
+<div class="row">
+    <div class="col-lg-6">
+        <!-- Dropdown Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Objetivos Caloricos</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                        aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <table class="table">
+                    
+                    <tbody>
+                        <tr>
+                            <th>
+                                Fecha de Nacimiento:
+                            </th>
+                            <th>{{data_profile.fit_prof_birth_date|date:"d/m/Y"|default:"No tiene fecha de nacimiento"}}</th>
+                        </tr>
+                        <tr>
+                            <th>Edad</th>
+                            <th>
+                                {{edad|default:"No tiene fecha de nacimiento"}}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Peso Perfil</th>
+                            <th>{{data_profile.fit_prof_weight|default:"No tiene peso en su Perfil"}}</th>
+                        </tr>
+                        <tr>
+                            <th>Altura Perfil</th>
+                            <th>{{data_profile.fit_prof_height|default:"No tiene altura en su Perfil"}}</th>
+                        </tr>
+                        <tr>
+                            <th>Calorias de Mantenimiento</th>
+                            <th>{{calorias.mantenimiento|default:"No tiene peso en su Perfil"}}</th>
+                        </tr>
+                        <tr>
+                            <th>Calorias de Deficit</th>
+                            <th>{{calorias.deficit|default:"No tiene peso en su perfil"}}</th>
+                        </tr>
+                        <tr>
+                            <th>Calorias de Superavit</th>
+                            <th>{{calorias.superavit|default:"No tiene peso en su perfil"}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+
+        <!-- Dropdown Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Peso promedio en DEFICIT</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                        aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Peso Perfil</th>
+                            <th>{{data_profile.fit_prof_weight}}</th>
+                        </tr>
+                        <tr>
+                            <th>Peso promedio Semanal</th>
+                            <th>{{peso_semanal}}</th>
+                        </tr>
+                        <tr>
+                            <th>Peso Perdido</th>
+                            <th>{{peso_perdido}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content_tablero %}
+            

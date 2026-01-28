@@ -1,0 +1,87 @@
+{% extends 'basetablero.html' %}
+
+{% block title_tablero %}
+    Profile
+{% endblock title_tablero %}
+
+{% block username_tablero %}
+    {{request.user}}
+{% endblock username_tablero %}
+    
+{% block subtitle_tablero %}
+    Mi Perfil
+{% endblock subtitle_tablero %}
+
+{% block content_tablero %}
+
+    <main class="container">
+        <form action="{%url 'fitprofiles'%}" method="POST" class="row g-3">
+        
+            {% if messages %}
+                {% for mensaje in messages %}
+                    <div class="alert alert-{{ mensaje.tags }}" role="alert">
+                        {{mensaje}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+                
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="id_first_name" class="form-label">Nombre</label>
+                    <input type="text" id="id_first_name" class="form-control" name="first_name" value="{{frmuser.first_name.value}}">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="id_last_name" class="form-label">Apellido</label>
+                    <input type="text" id="id_last_name" name="last_name" class="form-control" value="{{frmuser.last_name.value}}">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="id_email" class="form-label">Email</label>
+                    <input type="text" id="id_email" name="email" class="form-control" value="{{frmuser.email.value}}">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="id_fit_prof_phne" class="form-label">Telefono</label>
+                    <input type="text" id="id_fit_prof_phne" name="fit_prof_phne" class="form-control" value="{{frmprofile.fit_prof_phne.value}}">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="id_fit_prof_birth_date" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" id="id_fit_prof_birth_date" name="fit_prof_birth_date" class="form-control" value="{{frmprofile.fit_prof_birth_date.value|date:'Y-m-d'}}">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="id_fit_prof_height" class="form-label">Altura en centimetros</label>
+                    <input type="number" id="id_fit_prof_height" name="fit_prof_height" class="form-control" value="{{frmprofile.fit_prof_height.value}}">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="id_fit_prof_weight" class="form-label">Peso en Kg</label>
+                    <input type="number" id="id_fit_prof_weight" name="fit_prof_weight" class="form-control" value="{{frmprofile.fit_prof_weight.value}}">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="id_fit_sexo" class="form-label">Genero</label>
+                    <select class="form-control" name="fit_sexo" id="id_fit_sexo" value="{{frmprofile.fit_sexo.value}}">
+                        {% for valor,descripcion in genero %}
+                            <option value="{{ valor }}"
+                                {% if frmprofile.fit_sexo.value == valor %}
+                                    selected
+                                {% endif %}>
+                                
+                                {{ descripcion }}
+                            </option>
+                        {% endfor %}
+                        
+                    </select>
+                    
+                </div>
+            </div>
+        
+            <button class="btn btn-success">
+                Guardar
+            </button>
+        </form>                    
+    </main>
+  
+
+        
+ 
+   
+{% endblock content_tablero %}
+    

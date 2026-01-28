@@ -1,0 +1,70 @@
+{% extends "basetablero.html" %}
+{% load static %}
+{% block title_tablero %}
+    Consulta tus Pesos
+{% endblock title_tablero %}
+
+{% block style_tablero %}
+    <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap4.min.css' %}">        
+{% endblock style_tablero %}
+
+{% block username_tablero %}
+    {{request.user}}
+{% endblock username_tablero %}
+    
+{% block subtitle_tablero %}
+    Consulta de Pesos
+{% endblock subtitle_tablero %}
+
+{% block content_tablero %}
+<div class="card shadow mb-4">
+    {% if messages %}
+        {% for mensaje in messages %}
+            <div class="alert alert-success" role="alert">
+                {{mensaje}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Mis Pesos</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Fecha de Pesos</th>
+                        <th>Dia</th>
+                        <th>Peso</th>
+                        <th>Observacion</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for peso in consultapesos %}
+                        <tr>
+                            <td>{{peso.fit_fcregister|date:"d/m/Y"}}</td>
+                            <td>{{peso.fit_fcregister|date:"l"}}</td>
+                            <td>{{peso.fit_weight}}</td>
+                            <td>{{peso.fit_observation|default:"Sin Observaciones"}}</td>
+                            <td>
+                                <a href="{% url 'editpeso' peso.id%}" class="text-decoration-none">
+                                    <i class="fas fa-edit"></i>
+                                    Editar
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content_tablero %}
+
+{% block scripts_tablero %}
+    <script src="{% static 'js/jquery.dataTables.min.js'%}"></script>
+    <script src="{% static 'js/dataTables.bootstrap4.min.js'%}"></script>
+    <script src="{% static 'js/datatables-demo.js'%}"></script>
+{% endblock scripts_tablero %}

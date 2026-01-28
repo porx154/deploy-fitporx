@@ -1,0 +1,43 @@
+{% extends "basetablero.html" %}
+
+{% block title_tablero %}
+    Editar Mi Peso
+{% endblock title_tablero %}
+
+{% block username_tablero %}
+    {{request.user}}
+{% endblock username_tablero %}
+    
+{% block subtitle_tablero %}
+    Editar Registro
+{% endblock subtitle_tablero %}
+
+{% block content_tablero %}
+
+<main class="container">
+    
+    <form method="POST" class="row g-3">
+        {% csrf_token %}
+        <div class ="row">
+            <div class="col-12 mb-3">
+                <label for="id_fit_fcregister" class="form-label">Fecha de Registro</label>
+                <input type="date" id="id_fit_fcregister" class="form-control" name="fit_fcregister" value="{{pesos.fit_fcregister|date:'Y-m-d'}}">
+            </div>
+            <div class="col-12 mb-3">
+                <label for="id_fit_weight" class="form-label">Peso en Kg</label>
+                <input type="number" id="id_fit_weight" class="form-control" name="fit_weight" value="{{pesos.fit_weight}}">
+            </div>
+            <div class="col-12 mb-3">
+                <label for="id_fit_observation" class="form-label">Observaciones</label>
+                <textarea name="fit_observation" id="id_fit_observation" class="form-control">{{pesos.fit_observation}}</textarea>
+            </div>
+            <div class="col-12 mb-3">
+                <button class="btn btn-success">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</main>
+{% endblock content_tablero %}
+    
