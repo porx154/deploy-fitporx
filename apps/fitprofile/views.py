@@ -15,8 +15,9 @@ def fitprofiles(request):
     else:        
         frm_user = UserUpdateForm(request.POST,instance=user)
         frm_profile = ProfileForm(request.POST,instance=profile)
-        telefono = FitProfile.objects.filter(fit_prof_phne=request.POST['fit_prof_phne'])
-        if telefono:
+        profile_s = FitProfile.objects.filter(fit_prof_phne=request.POST['fit_prof_phne'])
+     
+        if profile.fit_prof_phne and (profile.user != request.user):
             messages.warning(request,"El telefono que intenta registrar ya esta en uso")
             return redirect('fitprofiles')
         if frm_user.is_valid() and frm_profile.is_valid():
