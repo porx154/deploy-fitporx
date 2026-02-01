@@ -161,7 +161,7 @@ def conobjetivos(request):
         #el peso semana y el peso perdido solo se calculara automaticamente cuando el dia sea domingo
         fecha_hoy = date.today()
         nombre_dia = fecha_hoy.strftime('%A')
-        if fecha_hoy == 'Sunday':               
+        if nombre_dia == 'Sunday':               
             peso_semanal = calcular_promedio_semanal(request,data_profile.fit_prof_weight)
             peso_perdido = round(data_profile.fit_prof_weight - peso_semanal,2)
     return render(request,'dashboard/objetivos.html',{
